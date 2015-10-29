@@ -25,12 +25,13 @@
         <h2>Search</h2>
         <form ng-submit="getSongs()">
           <label>Tracks:</label>
-          <input name="search" placeholder="Enter your search.." ng-model="track" class="form-control"></input>
+            <input name="search" placeholder="Enter your search.." ng-model="track" class="form-control"></input>
           <button type="submit" class="btn btn-primary" type="button">Search</button>
         </form>
         <!-- Only show results when we have them -->
-        <div ng-show="tracks">
-          <!-- Show each track, and create and element for it -->
+        <div ng-show="tracks" ng-repeat="track in tracks">
+            <p>{{track.title}}</p>
+          <img src="{{track.img}}" alt="image" ng-click="play(track)"/>
         </div>
       </div>
 

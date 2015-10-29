@@ -10,7 +10,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   // the favorites section
   $scope.favorites = [];
   // If you want to get REALLY fancy, then you could use localStorage so that
-  // favorites don't disapear on a page refresh!
+  // favorites don't dissapear on a page refresh!
 
   // These are the tracks that represent the current query
   $scope.tracks = [];
@@ -52,7 +52,15 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       // You can name those properties whatever you want BUT the play()
       // function expects the preview property.
       // Hint: lodash can make creating this object pretty easy :)
-      $scope.tracks = null;
+      var traksarray = response.data.tracks.items;
+      traksarray.forEach(function(track) {
+          $scope.tracks.push({
+            title: track.name,
+            img: track.album.images[0].url,
+            artist: track.artists[0],
+            preview: track.preview_url
+          })
+      });
     }
 
     function fail(response) {
